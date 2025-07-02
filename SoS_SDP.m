@@ -12,7 +12,7 @@ f = [-x1 + x2^3;
 prog = sosprogram(vars);
 
 % Lyapunov is defined second-order
-monom = monomials(vars, 0:2);  % monomial basis e.g., 2 --> x1^2, x1*x2, x2^2
+monom = monomials(vars, 1:2);  % monomial basis e.g., 2 --> x1^2, x1*x2, x2^2
 [prog, V] = sospolyvar(prog, monom, 'wscoeff');
 
 % V(x) > ε‖x‖²
