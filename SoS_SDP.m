@@ -17,13 +17,13 @@ monom = monomials(vars, 2);  % monomial basis（x1^2, x1*x2, x2^2）
 
 % V(x) > ε‖x‖²
 eps = 1e-4;
-prog = sosineq(prog, V - eps*(x1^2 + x2^2));  % guarantee V > 0
+prog = sosineq(prog, V - eps*(x1^2 + x2^2));  % guarantee V > 0 and V([0,0]) == 0
 
 % calculate the derivative of V
 Vdot = jacobian(V, vars) * f;
 
-% negative definite guarantee：-Vdot > ε‖x‖², Vdot < -ε‖x‖²
-prog = sosineq(prog, -Vdot - eps*(x1^2 + x2^2));
+% negative definite guarantee：-Vdot > 0, Vdot < 0
+prog = sosineq(prog, -Vdot);
 
 % solve
 prog = sossolve(prog);
